@@ -1,4 +1,5 @@
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class MyCanvas extends Canvas {
@@ -23,7 +24,7 @@ public class MyCanvas extends Canvas {
 
 	public void clear(Graphics g)
 	{
-		g.setColor(ColorManager.CANVAS_BACKGROUND);
+		g.setColor(new Color(62, 62, 62));
         g.fillRect(0, 0, getWidth(), getHeight());
 	}
 
