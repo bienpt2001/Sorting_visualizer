@@ -226,9 +226,6 @@ public class MainFrame extends JFrame implements PropertyChangeListener,
 			case 4:  // quick button
 				visualizer.quickSort();
 				break;
-			case 5:  // merge button
-				visualizer.mergeSort();
-				break;
 		}
 	}
 
@@ -242,9 +239,9 @@ public class MainFrame extends JFrame implements PropertyChangeListener,
 
 
 	// showing statistics when sorting is completed
-	public void onArraySorted(long elapsedTime, int comp, int swapping)
+	@Override
+	public void onArraySorted(int comp, int swapping)
 	{
-		timeLabel.setText("Elapsed Time: " + (int)(elapsedTime/1000.0) + " µs");
 		compLabel.setText("Comparisons: " + comp);
 		swapLabel.setText("Swaps: " + swapping);
 	}
@@ -262,4 +259,11 @@ public class MainFrame extends JFrame implements PropertyChangeListener,
 
 		return bs;
 	}
+
+
+	// @Override
+	// public void onArraySorted(int comparison, int swapping) {
+	// 	// TODO Auto-generated method stub
+		
+	// }
 }
