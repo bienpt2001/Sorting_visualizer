@@ -73,19 +73,21 @@ public class Visualizer {
 	}
 
 	private Color getBarColor(int value) {
-		int interval = (int) (array.length / 5.0);
-		if (value < interval)
-			return new Color(214, 131, 79);
-		else if (value < interval * 2)
-			return new Color(244, 183, 7);
-		else if (value < interval * 3)
-			return new Color(135, 170, 102);
-		else if (value < interval * 4)
-			return new Color(76, 179, 210);
-		return new Color(105, 198, 255);
-
+		// int interval = (int) (array.length / 5.0);
+		if (value % 7 == 0)
+			return new Color(221, 77, 77); //red
+		else if (value % 7 == 1)
+			return new Color(214, 131, 79); //orange
+		else if (value % 7 == 2)
+			return new Color(244, 183, 7); //yellow
+		else if (value % 7 == 3)
+			return new Color(135, 170, 102); //green
+		else if (value % 7 == 4)
+			return new Color(105, 198, 255); //blue
+		else if (value % 7 == 5)
+			return new Color(120, 21, 233); //Indigo Blue
+		return new Color(198, 21, 233);	//purpil
 	}
-
 	/* BUBBLE SORT */
 	public void bubbleSort() {
 		if (!isCreated())
