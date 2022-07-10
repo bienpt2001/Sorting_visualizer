@@ -27,8 +27,8 @@ public class Visualizer {
 		this.listener = listener;
 
 		originalColor = new Color(211, 221, 228);// trắng
-		comparingColor = new Color(244, 186, 7);// vàng
-		swappingColor = new Color(229, 77, 79);// đỏ
+		comparingColor = new Color(96, 96, 96);// đen
+		swappingColor = new Color(153, 0, 76);// hồng tím
 
 		bs = listener.getBufferStrategy();
 
@@ -86,7 +86,7 @@ public class Visualizer {
 			return new Color(105, 198, 255); //blue
 		else if (value % 7 == 5)
 			return new Color(120, 21, 233); //Indigo Blue
-		return new Color(198, 21, 233);	//purpil
+		return new Color(198, 21, 233);	//purple
 	}
 	/* BUBBLE SORT */
 	public void bubbleSort() {
