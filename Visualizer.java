@@ -81,22 +81,7 @@ public class Visualizer
 		g.dispose();
 	}
 
-<<<<<<< Updated upstream
 
-	// return a color for a bar
-	private Color getBarColor(int value)
-	{
-		int interval = (int) (array.length / 5.0);
-		if (value < interval)
-			return ColorManager.BAR_ORANGE;
-		else if (value < interval * 2)
-			return ColorManager.BAR_YELLOW;
-		else if (value < interval * 3)
-			return ColorManager.BAR_GREEN;
-		else if (value < interval * 4)
-			return ColorManager.BAR_CYAN;
-		return ColorManager.BAR_BLUE;
-=======
 	private Color getBarColor(int value) {
 		// int interval = (int) (array.length / 5.0);
 		if (value % 7 == 0)
@@ -112,7 +97,6 @@ public class Visualizer
 		else if (value % 7 == 5)
 			return new Color(120, 21, 233); //Indigo Blue
 		return new Color(198, 21, 233);	//purpil
->>>>>>> Stashed changes
 
 	}
 
@@ -497,19 +481,17 @@ public class Visualizer
 
 		bs.show();
 
-<<<<<<< Updated upstream
 		// delay
-=======
->>>>>>> Stashed changes
+
 		try {
 			TimeUnit.MILLISECONDS.sleep(speed);
 		} catch (Exception ex) {}
 
-<<<<<<< Updated upstream
+
 		// put back to original color
-=======
+
 		// chuyển màu cũ
->>>>>>> Stashed changes
+
 		bars[i].setColor(color1);
 		bars[i].draw(g);
 
@@ -555,7 +537,6 @@ public class Visualizer
 		}
 
 		// show elapsed time and comparisons
-		listener.onArraySorted(time, comp, swapping);
 	}
 
 
@@ -596,14 +577,8 @@ public class Visualizer
 		this.speed = (int) (1000.0/fps);
 	}
 
-<<<<<<< Updated upstream
-	public interface SortedListener
-	{
-		void onArraySorted(long elapsedTime, int comparison, int swapping);
-=======
-	public interface SortedListener {
 
->>>>>>> Stashed changes
+	public interface SortedListener {
 		BufferStrategy getBufferStrategy();
 	}
 }

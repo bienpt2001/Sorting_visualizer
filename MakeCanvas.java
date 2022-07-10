@@ -2,12 +2,12 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class MyCanvas extends Canvas {
+public class MakeCanvas extends Canvas {
 	public static final long serialVersionUID = 2L;
 
 	private VisualizerProvider listener;
 
-	public MyCanvas(VisualizerProvider listener)
+	public MakeCanvas(VisualizerProvider listener)
 	{
 		super();
 		this.listener = listener;
