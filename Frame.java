@@ -4,13 +4,10 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferStrategy;
 
-
 public class Frame extends JFrame implements
-	   ChangeListener, Visualizer.SortedListener,
-	   ButtonPanel.SortButtonListener, MyCanvas.VisualizerProvider
-{
+		ChangeListener, Visualizer.SortedListener,
+		ButtonPanel.SortButtonListener, MakeCanvas.VisualizerProvider {
 	public static final long serialVersionUID = 10L;
-
 
 	private static final int WIDTH = 1280, HEIGHT = 720;
 	private static final int CAPACITY = 10, FPS = 100;
@@ -18,42 +15,40 @@ public class Frame extends JFrame implements
 	private ButtonPanel buttonPanel;
 	private JLabel capacityLabel, fpsLabel;
 	private JSlider fpsSlider;
-	private MyCanvas canvas;
+	private MakeCanvas canvas;
 	private Visualizer visualizer;
 	@SuppressWarnings("rawtypes")
-	private JComboBox  combobox;
-	public Frame()
-	{
+	private JComboBox combobox;
+
+	public Frame() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setMaximumSize(new Dimension(WIDTH, HEIGHT + 200));
 		this.setMinimumSize(new Dimension(WIDTH, HEIGHT + 20));
 		this.setPreferredSize(new Dimension(WIDTH, HEIGHT + 20));
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
-		this.setBackground(ColorManager.BACKGROUND);
+		this.setBackground(new Color(62, 62, 62));
 		this.setTitle("Group 4's Sorting Visualizer");
 		initialize();
 		this.setVisible(true);
 	}
 
-
-	// initialize components
+	// ktao p tử
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private void initialize()
-	{
+	private void initialize() {
 		mainPanel = new JPanel();
 		mainPanel.setLayout(null);
-		mainPanel.setBackground(ColorManager.BACKGROUND);
+		mainPanel.setBackground(new Color(62, 62, 62));
 		add(mainPanel);
 
-		// add buttons panel
+		// tạo button
 		buttonPanel = new ButtonPanel(this);
 		buttonPanel.setBounds(0, 150, 250, HEIGHT);
-		buttonPanel.setBackground(ColorManager.BACKGROUND);
+		buttonPanel.setBackground(new Color(62, 62, 62));
 		mainPanel.add(buttonPanel);
 
-		// add canvas
-		canvas = new MyCanvas(this);
+		// tạo canvas
+		canvas = new MakeCanvas(this);
 		int cWidth = WIDTH - 250 - 10;
 		int cHeight = HEIGHT - 80;
 		canvas.setFocusable(false);
@@ -68,34 +63,32 @@ public class Frame extends JFrame implements
 		visualizer.createRandomArray(canvas.getWidth(), canvas.getHeight());
 
 		capacityLabel = new JLabel("Capacity");
-		capacityLabel.setForeground(ColorManager.TEXT);
+		capacityLabel.setForeground(new Color(232, 232, 232));
 		capacityLabel.setFont(new Font(null, Font.BOLD, 15));
-		Integer[] number = { 10,20,30,40,50};
+		Integer[] number = { 10, 20, 30, 40, 50 };
 		combobox = new JComboBox(number);
-		combobox.setFont(new Font("Arial",Font.BOLD,15));
+		combobox.setFont(new Font("Arial", Font.BOLD, 15));
 		combobox.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				visualizer.setCapacity((int)combobox.getSelectedItem());
+				visualizer.setCapacity((int) combobox.getSelectedItem());
 			}
-			
+
 		});
 		// input panel
 		inputPanel = new JPanel(new GridLayout(1, 0));
 		inputPanel.add(capacityLabel);
 		inputPanel.add(combobox);
-		inputPanel.setBackground(ColorManager.BACKGROUND);
+		inputPanel.setBackground(new Color(62, 62, 62));
 		inputPanel.setBounds(25, 20, 170, 30);
 		mainPanel.add(inputPanel);
 
-
-		// create slider for fps
 		// label
 		fpsLabel = new JLabel("Frames Per Second");
 		fpsLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		fpsLabel.setFont(new Font(null, Font.BOLD, 15));
-		fpsLabel.setForeground(ColorManager.TEXT);
+		fpsLabel.setForeground(new Color(232, 232, 232));
 
 		// slider
 		fpsSlider = new JSlider(JSlider.HORIZONTAL, 10, 310, FPS);
@@ -104,72 +97,57 @@ public class Frame extends JFrame implements
 		fpsSlider.setPaintTicks(true);
 		fpsSlider.setPaintLabels(true);
 		fpsSlider.setPaintTrack(true);
-		fpsSlider.setBackground(ColorManager.BACKGROUND);
-		fpsSlider.setForeground(ColorManager.TEXT);
+		fpsSlider.setBackground(new Color(62, 62, 62));
+		fpsSlider.setForeground(new Color(232, 232, 232));
 		fpsSlider.addChangeListener(this);
-
 
 		sliderPanel = new JPanel();
 		sliderPanel.setLayout(new BoxLayout(sliderPanel, BoxLayout.Y_AXIS));
-		sliderPanel.setBackground(ColorManager.BACKGROUND);
+		sliderPanel.setBackground(new Color(62, 62, 62));
 		sliderPanel.add(fpsLabel);
 		sliderPanel.add(fpsSlider);
 
 		sliderPanel.setBounds(10, 80, 220, 100);
 		mainPanel.add(sliderPanel);
 	}
-	public void stateChanged(ChangeEvent e)
-	{
-		if (!fpsSlider.getValueIsAdjusting())
-		{
+
+	public void stateChanged(ChangeEvent e) {
+		if (!fpsSlider.getValueIsAdjusting()) {
 			int value = (int) fpsSlider.getValue();
 			visualizer.setFPS(value);
 		}
 	}
 
-
-	// button clicked
-	public void sortButtonClicked(int id)
-	{
-		switch (id)
-		{
-			case 0:  // create button
+	// chọn
+	public void sortButtonClicked(int id) {
+		switch (id) {
+			case 0:
 				visualizer.createRandomArray(canvas.getWidth(), canvas.getHeight());
 				break;
-			case 1:  // bubble button
+			case 1:
 				visualizer.bubbleSort();
 				break;
-			case 2:  // selection button
+			case 2:
 				visualizer.selectionSort();
 				break;
-			case 3:  // insertion button
+			case 3:
 				visualizer.insertionSort();
 				break;
-			case 4:  // quick button
+			case 4:
 				visualizer.quickSort();
 				break;
 		}
 	}
 
-
-	// draw the array
-	public void onDrawArray()
-	{
+	// vẽ arr
+	public void onDrawArray() {
 		if (visualizer != null)
 			visualizer.drawArray();
 	}
 
-
-	// showing statistics when sorting is completed
-	@Override
-
-
-	// return the graphics for drawing
-	public BufferStrategy getBufferStrategy()
-	{
+	public BufferStrategy getBufferStrategy() {
 		BufferStrategy bs = canvas.getBufferStrategy();
-		if (bs == null)
-		{
+		if (bs == null) {
 			canvas.createBufferStrategy(2);
 			bs = canvas.getBufferStrategy();
 		}
@@ -177,17 +155,8 @@ public class Frame extends JFrame implements
 		return bs;
 	}
 
-
 	@Override
 	public void onArraySorted(long elapsedTime, int comparison, int swapping) {
 		// TODO Auto-generated method stub
-		
 	}
-
-
-	// @Override
-	// public void onArraySorted(int comparison, int swapping) {
-	// 	// TODO Auto-generated method stub
-		
-	// }
 }
