@@ -281,6 +281,11 @@ public class Visualizer {
 
 		bs.show();
 
+		try {
+			TimeUnit.MILLISECONDS.sleep(speed);
+		} catch (Exception ex) {
+		}
+
 		// chuyển màu cũ
 		bars[i].setColor(color1);
 		bars[i].draw(g);
@@ -352,8 +357,6 @@ public class Visualizer {
 	}
 
 	public interface SortedListener {
-		void onArraySorted(long elapsedTime, int comparison, int swapping);
-
 		BufferStrategy getBufferStrategy();
 	}
 }

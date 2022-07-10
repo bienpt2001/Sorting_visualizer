@@ -155,8 +155,4 @@ public class Frame extends JFrame implements
 		return bs;
 	}
 
-	@Override
-	public void onArraySorted(long elapsedTime, int comparison, int swapping) {
-		// TODO Auto-generated method stub
-	}
 }
