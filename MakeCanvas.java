@@ -5,9 +5,9 @@ import java.awt.Graphics;
 public class MakeCanvas extends Canvas {
 	public static final long serialVersionUID = 2L;
 
-	private VisualizerProvider listener;
+	private AnimationProvider listener;
 
-	public MakeCanvas(VisualizerProvider listener) {
+	public MakeCanvas(AnimationProvider listener) {
 		super();
 		this.listener = listener;
 	}
@@ -24,7 +24,7 @@ public class MakeCanvas extends Canvas {
 		g.fillRect(0, 0, getWidth(), getHeight());
 	}
 
-	public interface VisualizerProvider {
+	public interface AnimationProvider {
 		void onDrawArray();
 	}
 }

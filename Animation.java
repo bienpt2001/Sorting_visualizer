@@ -76,7 +76,7 @@ public class Animation {
 	}
 
 	private Color getBarColor(int value) {
-		// int interval = (int) (array.length / 5.0);
+		
 		if (value % 7 == 0)
 			return new Color(221, 77, 77); //red
 		else if (value % 7 == 1)

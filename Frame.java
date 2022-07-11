@@ -6,7 +6,7 @@ import java.awt.image.BufferStrategy;
 
 public class Frame extends JFrame implements
 		ChangeListener, Animation.SortedListener,
-		Button.SortButtonListener, MakeCanvas.VisualizerProvider {
+		Button.SortButtonListener, MakeCanvas.AnimationProvider {
 	public static final long serialVersionUID = 10L;
 
 	private static final int WIDTH = 1280, HEIGHT = 720;
@@ -16,7 +16,7 @@ public class Frame extends JFrame implements
 	private JLabel capacityLabel, fpsLabel;
 	private JSlider fpsSlider;
 	private MakeCanvas canvas;
-	private Animation visualizer;
+	private Animation animation;
 	@SuppressWarnings("rawtypes")
 	private JComboBox combobox;
 
@@ -28,7 +28,7 @@ public class Frame extends JFrame implements
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		this.setBackground(new Color(62, 62, 62));
-		this.setTitle("Group 4's Sorting Visualizer");
+		this.setTitle("Group 4's Sorting animation");
 		initialize();
 		this.setVisible(true);
 	}
@@ -59,8 +59,9 @@ public class Frame extends JFrame implements
 		mainPanel.add(canvas);
 		pack();
 
-		visualizer = new Animation(CAPACITY, FPS, this);
-		visualizer.createRandomArray(canvas.getWidth(), canvas.getHeight());
+
+		animation = new Animation(CAPACITY, FPS, this);
+		animation.createRandomArray(canvas.getWidth(), canvas.getHeight());
 
 		capacityLabel = new JLabel("Capacity");
 		capacityLabel.setForeground(new Color(232, 232, 232));
@@ -72,7 +73,8 @@ public class Frame extends JFrame implements
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				visualizer.setCapacity((int) combobox.getSelectedItem());
+				animation.setCapacity((int) combobox.getSelectedItem());
+				animation.createRandomArray(canvas.getWidth(), canvas.getHeight());
 			}
 
 		});
@@ -85,15 +87,15 @@ public class Frame extends JFrame implements
 		mainPanel.add(inputPanel);
 
 		// label
-		fpsLabel = new JLabel("Frames Per Second");
+		fpsLabel = new JLabel("FPS");
 		fpsLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		fpsLabel.setFont(new Font(null, Font.BOLD, 15));
 		fpsLabel.setForeground(new Color(232, 232, 232));
 
 		// slider
-		fpsSlider = new JSlider(JSlider.HORIZONTAL, 1, 310, FPS);
-		fpsSlider.setMajorTickSpacing(100);
-		fpsSlider.setMinorTickSpacing(20);
+		fpsSlider = new JSlider(JSlider.HORIZONTAL, 1, 101, FPS);
+		fpsSlider.setMajorTickSpacing(20);
+		fpsSlider.setMinorTickSpacing(10);
 		fpsSlider.setPaintTicks(true);
 		fpsSlider.setPaintLabels(true);
 		fpsSlider.setPaintTrack(true);
@@ -114,7 +116,7 @@ public class Frame extends JFrame implements
 	public void stateChanged(ChangeEvent e) {
 		if (!fpsSlider.getValueIsAdjusting()) {
 			int value = (int) fpsSlider.getValue();
-			visualizer.setFPS(value);
+			animation.setFPS(value);
 		}
 	}
 
@@ -122,27 +124,27 @@ public class Frame extends JFrame implements
 	public void sortButtonClicked(int id) {
 		switch (id) {
 			case 0:
-				visualizer.createRandomArray(canvas.getWidth(), canvas.getHeight());
+				animation.createRandomArray(canvas.getWidth(), canvas.getHeight());
 				break;
 			case 1:
-				visualizer.bubbleSort();
+				animation.bubbleSort();
 				break;
 			case 2:
-				visualizer.selectionSort();
+				animation.selectionSort();
 				break;
 			case 3:
-				visualizer.heapSort();
+				animation.heapSort();
 				break;
 			case 4:
-				visualizer.quickSort();
+				animation.quickSort();
 				break;
 		}
 	}
 
 	// vẽ arr
 	public void onDrawArray() {
-		if (visualizer != null)
-			visualizer.drawArray();
+		if (animation != null)
+			animation.drawArray();
 	}
 
 	public BufferStrategy getBufferStrategy() {
