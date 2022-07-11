@@ -1,4 +1,7 @@
 import javax.swing.JOptionPane;
+
+import javafx.scene.chart.PieChart.Data;
+
 import java.awt.image.BufferStrategy;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -28,7 +31,7 @@ public class Visualizer {
 
 		originalColor = new Color(211, 221, 228);// trắng
 		comparingColor = new Color(96, 96, 96);// đen
-		swappingColor = new Color(96, 96, 96);// hồng tím
+		swappingColor = new Color(153, 0, 76);// hồng tím
 
 		bs = listener.getBufferStrategy();
 
@@ -94,7 +97,6 @@ public class Visualizer {
 			return;
 
 		g = bs.getDrawGraphics();
-
 		int count = 0;
 		for (int i = array.length - 1; i >= 0; i--) {
 			count = 0;
@@ -151,47 +153,85 @@ public class Visualizer {
 		g.dispose();
 	}
 
-	/* INSERTION SORT */
-	public void insertionSort() {
-		if (!isCreated())
-			return;
+	// /* INSERTION SORT */
+	// public void insertionSort() {
+	// 	if (!isCreated())
+	// 		return;
 
-		g = bs.getDrawGraphics();
+	// 	g = bs.getDrawGraphics();
 
-		Bar bar;
-		for (int i = 1; i < array.length; i++) {
-			bars[i].setColor(getBarColor(i));
+	// 	Bar bar;
+	// 	for (int i = 1; i < array.length; i++) {
+	// 		bars[i].setColor(getBarColor(i));
 
-			// tìm vị trí chèn
-			int index = i - 1, element = array[i];
-			while (index >= 0 && element < array[index]) {
-				array[index + 1] = array[index];
+	// 		// tìm vị trí chèn
+	// 		int index = i - 1, element = array[i];
+	// 		while (index >= 0 && element < array[index]) {
+	// 			array[index + 1] = array[index];
 
-				bar = bars[index + 1];
-				bar.clear(g);
-				bar.setValue(bars[index].getValue());
-				colorBar(index + 1, swappingColor);
+	// 			bar = bars[index + 1];
+	// 			bar.clear(g);
+	// 			bar.setValue(bars[index].getValue());
+	// 			colorBar(index + 1, swappingColor);
 
-				index--;
-			}
+	// 			index--;
+	// 		}
 
-			index++;
+	// 		index++;
 
-			// thêm ptu
-			array[index] = element;
+	// 		// thêm ptu
+	// 		array[index] = element;
 
-			bar = bars[index];
-			bar.clear(g);
-			bar.setValue(element);
-			bar.setColor(getBarColor(index));
-			bar.draw(g);
+	// 		bar = bars[index];
+	// 		bar.clear(g);
+	// 		bar.setValue(element);
+	// 		bar.setColor(getBarColor(index));
+	// 		bar.draw(g);
 
-			bs.show();
+	// 		bs.show();
+	// 	}
+
+	// 	finishAnimation();
+
+	// 	g.dispose();
+	// }
+
+	/*Heap sort */
+
+	public void heapify(int n, int i){
+		int max = i;    
+		int l = i * 2 + 1;   
+		int r = l + 1;
+		if(l < n&& array[l] > array[max]){
+			max = l;
 		}
 
-		finishAnimation();
+		if(r < n && array[r] > array[max]){
+			max = r;
+		}
 
-		g.dispose();
+		if(max != i){
+			swap(i, max);
+			heapify(n, max);
+		}
+	}
+
+	public void heapSort(){
+		if (!isCreated())
+			return;
+		int n = array.length;
+		g = bs.getDrawGraphics();
+		for (int i = n/2 - 1; i >= 0; i--) {
+			heapify(n, i);
+		}
+		for (int j = n - 1 ; j > 0; j--) {
+			swap(0, j);
+			bars[j].setColor(getBarColor(j));
+			bars[j].draw(g);
+			bs.show();
+			heapify(j, 0);
+		}
+		finishAnimation();
 	}
 
 	/* QUICK SORT */

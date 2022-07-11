@@ -26,7 +26,7 @@ public class ButtonPanel extends JPanel
 		initButtons(btns[0], "New Array", 0);
 		initButtons(btns[1], "Bubble Sort", 1);
 		initButtons(btns[2], "Selection Sort", 2);
-		initButtons(btns[3], "Insertion Sort", 3);
+		initButtons(btns[3], "Heap Sort", 3);
 		initButtons(btns[4], "Quick Sort", 4);
 
 		// add button to the panel

@@ -65,7 +65,7 @@ public class Frame extends JFrame implements
 		capacityLabel = new JLabel("Capacity");
 		capacityLabel.setForeground(new Color(232, 232, 232));
 		capacityLabel.setFont(new Font(null, Font.BOLD, 15));
-		Integer[] number = { 10, 20, 30, 40, 50 };
+		Integer[] number = {10, 20, 30, 40, 50 };
 		combobox = new JComboBox(number);
 		combobox.setFont(new Font("Arial", Font.BOLD, 15));
 		combobox.addActionListener(new ActionListener() {
@@ -91,7 +91,7 @@ public class Frame extends JFrame implements
 		fpsLabel.setForeground(new Color(232, 232, 232));
 
 		// slider
-		fpsSlider = new JSlider(JSlider.HORIZONTAL, 10, 310, FPS);
+		fpsSlider = new JSlider(JSlider.HORIZONTAL, 1, 310, FPS);
 		fpsSlider.setMajorTickSpacing(100);
 		fpsSlider.setMinorTickSpacing(20);
 		fpsSlider.setPaintTicks(true);
@@ -131,7 +131,8 @@ public class Frame extends JFrame implements
 				visualizer.selectionSort();
 				break;
 			case 3:
-				visualizer.insertionSort();
+				// visualizer.insertionSort();
+				visualizer.heapSort();
 				break;
 			case 4:
 				visualizer.quickSort();
