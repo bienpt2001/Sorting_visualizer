@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Animation {
 	private static final int padding = 20;
+	private int spadding = 10;
 	private static final int maxHeight = 550, minHeight = 30;
 	private Integer[] arr;
 	private int capac, speed;
@@ -63,7 +64,7 @@ public class Animation {
 			value = rand.nextInt(maxHeight - minHeight) + minHeight;
 			arr[i] = value;
 
-			bar = new Bar((int) x, y, (int) width, value, src);
+			bar = new Bar((int) x, y+spadding, (int) width-spadding, value, src);
 			bar.draw(g);
 			bars[i] = bar;
 
@@ -74,9 +75,11 @@ public class Animation {
 		bs.show();
 		g.dispose();
 	}
-
+	public void setSpadding(int value){
+		this.spadding = value;
+	}
 	private Color getBarColor(int value) {
-		
+
 		if (value % 7 == 0)
 			return new Color(221, 77, 77); //red
 		else if (value % 7 == 1)

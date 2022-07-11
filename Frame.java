@@ -74,7 +74,12 @@ public class Frame extends JFrame implements
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				animation.setCapacity((int) combobox.getSelectedItem());
+				if((int) combobox.getSelectedItem() >=40 ){
+					animation.setSpadding(0);
+				}
+				else animation.setSpadding(10);
 				animation.createRandomArray(canvas.getWidth(), canvas.getHeight());
+
 			}
 
 		});
