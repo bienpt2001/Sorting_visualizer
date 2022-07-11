@@ -28,7 +28,7 @@ public class Visualizer {
 
 		originalColor = new Color(211, 221, 228);// trắng
 		comparingColor = new Color(96, 96, 96);// đen
-		swappingColor = new Color(153, 0, 76);// hồng tím
+		swappingColor = new Color(96, 96, 96);// hồng tím
 
 		bs = listener.getBufferStrategy();
 
