@@ -5,18 +5,18 @@ import java.awt.event.*;
 import java.awt.image.BufferStrategy;
 
 public class Frame extends JFrame implements
-		ChangeListener, Visualizer.SortedListener,
-		ButtonPanel.SortButtonListener, MakeCanvas.VisualizerProvider {
+		ChangeListener, Animation.SortedListener,
+		Button.SortButtonListener, MakeCanvas.VisualizerProvider {
 	public static final long serialVersionUID = 10L;
 
 	private static final int WIDTH = 1280, HEIGHT = 720;
 	private static final int CAPACITY = 10, FPS = 100;
 	private JPanel mainPanel, inputPanel, sliderPanel;
-	private ButtonPanel buttonPanel;
+	private Button buttonPanel;
 	private JLabel capacityLabel, fpsLabel;
 	private JSlider fpsSlider;
 	private MakeCanvas canvas;
-	private Visualizer visualizer;
+	private Animation visualizer;
 	@SuppressWarnings("rawtypes")
 	private JComboBox combobox;
 
@@ -42,7 +42,7 @@ public class Frame extends JFrame implements
 		add(mainPanel);
 
 		// tạo button
-		buttonPanel = new ButtonPanel(this);
+		buttonPanel = new Button(this);
 		buttonPanel.setBounds(0, 150, 250, HEIGHT);
 		buttonPanel.setBackground(new Color(62, 62, 62));
 		mainPanel.add(buttonPanel);
@@ -59,7 +59,7 @@ public class Frame extends JFrame implements
 		mainPanel.add(canvas);
 		pack();
 
-		visualizer = new Visualizer(CAPACITY, FPS, this);
+		visualizer = new Animation(CAPACITY, FPS, this);
 		visualizer.createRandomArray(canvas.getWidth(), canvas.getHeight());
 
 		capacityLabel = new JLabel("Capacity");
@@ -131,7 +131,6 @@ public class Frame extends JFrame implements
 				visualizer.selectionSort();
 				break;
 			case 3:
-				// visualizer.insertionSort();
 				visualizer.heapSort();
 				break;
 			case 4:
