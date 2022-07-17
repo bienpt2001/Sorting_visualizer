@@ -8,23 +8,23 @@ import javax.swing.event.*;
 public class Main {
 	
 	private MyColor myColor = new MyColor();
-	//FRAME
+	
 	private Frame mainFrame;
 	JLabel bestCase = new JLabel("");
 	JLabel worstCase = new JLabel("");
 	JLabel averageCase = new JLabel("");
 	JLabel space = new JLabel("");
 	JPanel inforPanel = new JPanel();
-	//GENERAL VARIABLES
-	private int len = 50;
+	
+	private int length = 50;
 	private int curAlg = 0;
 	private int spd = 50;
 	private int compare = 0;
-	private int swp = 0;
+	private int swap = 0;
 	JLabel capacLabel = new JLabel("Capacity : ");
 	JPanel capacPanel = new JPanel();
-	//ARRAYS
-	private int[] list = new int[len];
+
+	private int[] list = new int[length];
 	private String[] types = {"Bar Graph", "Dot Plot"};
 	private String[] algorithms = {"Bubble Sort", 
 								   "Insertion Sort",
@@ -34,34 +34,33 @@ public class Main {
 	JRadioButton bubbleSortBtn,insertionSortBtn,quickSortBtn,heapSortBtn,mergeSortBtn;
 	private Information infor = new Information() ;
 	JPanel delayPanel = new JPanel();
-	private Integer[] capacList = {50,40,30,20,10};
-	JComboBox capacComboBox = new JComboBox(capacList);
+	private Integer[] capacityList = {50,40,30,20,10};
+	JComboBox capacityCombobox = new JComboBox(capacityList);
 	private boolean sorting = false;
 	private boolean shuffled = true;
-	//UTIL OBJECTS
+	
 	SortingAlgorithms algorithm;
 	Random r = new Random();
-	//PANELS
+	
 	JPanel tools = new JPanel();
 	JPanel sliding = new JPanel();
 	private MyCanvas myCanvas;
-	//LABELS
+	
 	JLabel groupTile = new JLabel("Group 4");
 	JLabel delayL = new JLabel("Delay :");
 	JLabel msL = new JLabel(spd+" ms");
 	JLabel sizeL = new JLabel("Size :");
-	JLabel lenL = new JLabel(len+"");
+	JLabel lenL = new JLabel(length+"");
 	JLabel compareL = new JLabel("Comparisons : " + compare);
-	JLabel accessL = new JLabel("Swap Number : " + swp);
+	JLabel accessL = new JLabel("Swap Number : " + swap);
 	JLabel algorithmL = new JLabel("Algorithms");
 
-	//DROP DOWN BOX
+	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	JComboBox alg = new JComboBox(algorithms);
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	JComboBox graph = new JComboBox(types);
-//	JTextArea information = new JTextArea(algInfo[curAlg]);
-	//BUTTONS
+
 	
 	JButton stopBtn = new JButton("Stop");
 	
@@ -71,21 +70,21 @@ public class Main {
 	JButton sort = new JButton("Sort");
 	JButton shuffle = new JButton("New Array");
 	JButton credit = new JButton("Informaion");
-	//SLIDERS
+	
 	JSlider size = new JSlider(JSlider.HORIZONTAL,1,6,1);
 	JSlider speed = new JSlider(JSlider.HORIZONTAL,0,1000,spd);
-	//BORDER STYLE
+	
 	Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
-	//CONSTRUCTOR
+	
 	public Main() {
-		createList();	//CREATE THE LIST
-		initialize();	//INITIALIZE THE GUI
+		createList();	
+		initialize();	
 	}
 	
-	public void createList() {	//CREATES A LIST EQUAL TO THE LENGTH
+	public void createList() {	
 		
 		Random rand = new Random();
-		for(int i = 0; i < len; i++) {	//FILLS THE LIST FROM 1-LEN
+		for(int i = 0; i < length; i++) {	
 			list[i] = rand.nextInt(400)+50;
 		}  
 		
@@ -98,7 +97,7 @@ public class Main {
 	JPanel mainPanel;
 	
 	public void initialize() {
-		//SET UP FRAME
+		
 		
 	
 		mainFrame = new Frame();
@@ -107,7 +106,7 @@ public class Main {
 		mainPanel.setBounds(0,0,mainFrame.getWidth(),mainFrame.getHeight());
 		mainPanel.setBackground(myColor.backgroundColor);
 		mainPanel.setLayout(null);
-		//SET UP TOOLBAR
+		
 		tools.setLayout(null);
 		tools.setBounds(20,70,250,600);
 		tools.setBackground(myColor.backgroundColor);
@@ -148,11 +147,11 @@ public class Main {
 		test.setBounds(40,100,150,200);
 		test.setBackground(myColor.backgroundColor);
 		test.setLayout(new FlowLayout(FlowLayout.LEFT,0,10));
-//		test.setBorder(loweredetched);
+
 		tools.add(test);
 		
 		
-		//SET UP SORT BUTTON
+		
 		stopBtn.setBounds(40,440,120,30);
 		stopBtn.setFont(new Font("Arial",Font.BOLD,15));
 		stopBtn.setFocusable(false);
@@ -164,26 +163,25 @@ public class Main {
 		sort.setFocusable(false);
 		tools.add(sort);
 		
-
-		//SET UP SHUFFLE BUTTON
+		
 		shuffle.setBounds(40,550,120,30);
 		shuffle.setFont(new Font("Arial",Font.BOLD,15));
 		shuffle.setFocusable(false);
 		tools.add(shuffle);
 		
-		//SET UP DELAY LABEL
+		
 		delayL.setHorizontalAlignment(JLabel.LEFT);
 		delayL.setBounds(50,10,50,25);
 		delayL.setForeground(myColor.textColor);
 		sliding.add(delayL);
 		
-		//SET UP MS LABEL
+		
 		msL.setHorizontalAlignment(JLabel.LEFT);
 		msL.setBounds(250,10,50,25);
 		msL.setForeground(myColor.textColor);
 		sliding.add(msL);
 
-		//SET UP SPEED SLIDER
+		
 		speed.setMajorTickSpacing(100);
 		speed.setBounds(90,12,150,25);
 		speed.setPaintTicks(true);
@@ -195,13 +193,12 @@ public class Main {
 		capacLabel.setBounds(30,17,150,25);
 		capacLabel.setFont(new Font("Arial",Font.BOLD,17));
 		capacLabel.setForeground(myColor.textColor);
-		capacComboBox.setBounds(120,15,50,30);
-		capacComboBox.addActionListener(new ActionListener() {
+		capacityCombobox.setBounds(120,15,50,30);
+		capacityCombobox.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				len = (int)capacComboBox.getSelectedItem();
+				length = (int)capacityCombobox.getSelectedItem();
 				Update();
 			}
 			
@@ -210,32 +207,24 @@ public class Main {
 		
 	
 		
-		capacComboBox.setFocusable(false);
+		capacityCombobox.setFocusable(false);
 		capacPanel.add(capacLabel);
-		capacPanel.add(capacComboBox);
+		capacPanel.add(capacityCombobox);
 		capacPanel.setBackground(myColor.backgroundColor);
 		tools.add(capacPanel);
 		
 		
-		//SET UP COMPARISONS LABEL
+	
 		compareL.setHorizontalAlignment(JLabel.LEFT);
 		compareL.setBounds(400,10,200,25);
 		compareL.setForeground(myColor.textColor);
 		sliding.add(compareL);
 		
-		//SET UP ARRAY ACCESS LABEL
+		
 		accessL.setHorizontalAlignment(JLabel.LEFT);
 		accessL.setBounds(600,10,200,25);
 		accessL.setForeground(myColor.textColor);
 		sliding.add(accessL);
-		
-		//SET UP CREDIT BUTTON
-//		credit.setBounds(40,500,120,40);
-//		credit.setBackground(myColor.backgroundColor);
-//		credit.setForeground(myColor.textColor);
-//		credit.setFocusable(false);;
-//		credit.setFont(new Font("Arial",Font.PLAIN,17));
-//		tools.add(credit);
 		
 		
 		bestCase.setFont(new Font("Arial",Font.PLAIN,14));
@@ -258,17 +247,17 @@ public class Main {
 		
 		
 		
-		//SET UP CANVAS FOR GRAPH
+		
 		algorithm = new SortingAlgorithms();
 		
 		myCanvas = new MyCanvas(list);
 		myCanvas.setBounds(320,150,900,620);
-//		myCanvas.setBorder(BorderFactory.createLineBorder(Color.red));
+
 		mainPanel.add(sliding);
 		mainPanel.add(tools);
 		mainPanel.add(myCanvas);
 	
-		//ADD ACTION LISTENERS
+		
 		alg.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				curAlg = alg.getSelectedIndex();
@@ -281,7 +270,6 @@ public class Main {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				if(sorting) 
 					{
 						stopBtn.setText("Continue");
@@ -305,7 +293,7 @@ public class Main {
 				if(shuffled) {
 					if(sorting == false) {
 						compare = 0;
-						swp = 0;
+						swap = 0;
 					}
 					sorting = true;
 				}
@@ -318,7 +306,7 @@ public class Main {
 				createList();
 				reset();
 				compare = 0;
-				swp = 0;
+				swap = 0;
 				Update();
 			}
 		});
@@ -394,7 +382,6 @@ public class Main {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				curAlg = type;
 				updateBtn();
 			}
@@ -404,24 +391,24 @@ public class Main {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
+				
 				
 			}
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
+				
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
+				
 				
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
+				
 			
 			}
 
@@ -436,27 +423,27 @@ public class Main {
 	}
 	
 	
-	//SORTING STATE
+
 	public void sorting() {
 		if(sorting == true) stopBtn.setText("Stop");
 		else stopBtn.setText("Continue");
 		if(sorting) {
 			try {
-				switch(curAlg) {	//CURRENT ALGORITHM IS EXECUTED
+				switch(curAlg) {	
 					case 0:
 						algorithm.bubbleSort();
 						break;
 					case 1:
-						algorithm.insertionSort(0, len);
+						algorithm.insertionSort(0, length);
 						break;
 					case 2:
-						algorithm.quickSort(0,len-1);
+						algorithm.quickSort(0,length-1);
 						break;
 					case 3:
 						algorithm.heapSort();
 						break;
 					case 4:
-						algorithm.mergeSort(0,len-1);
+						algorithm.mergeSort(0,length-1);
 						break;
 			
 				
@@ -464,16 +451,16 @@ public class Main {
 		
 						break;
 				}
-			} catch(IndexOutOfBoundsException e) {}	//EXCEPTION HANDLER INCASE LIST ACCESS IS OUT OF BOUNDS
+			} catch(IndexOutOfBoundsException e) {}	
 		}
-		reset();	//RESET
-		pause();	//GO INTO PAUSE STATE
+		reset();	
+		pause();	
 	}
 	
-	//PAUSE STATE
+	
 	public void pause() {
 		int i = 0;
-		while(!sorting) {	//LOOP RUNS UNTIL SORTING STARTS
+		while(!sorting) {	
 			i++;
 			if(i > 100)
 				i = 0;
@@ -481,10 +468,10 @@ public class Main {
 				Thread.sleep(1);
 			} catch(Exception e) {}
 		}
-		sorting();	//EXIT THE LOOP AND START SORTING
+		sorting();	
 	}
 	
-	//RESET SOME VARIABLES
+	
 	public void reset() {
 		sorting = false;
 		myCanvas.setCurrent(-1);
@@ -493,10 +480,10 @@ public class Main {
 		if(sorting==false) stopBtn.setText("Continue");
 		if(!algorithm.checkSorted()) Update();
 		else {
-			myCanvas.setCapac(len);
+			myCanvas.setcapacity(length);
 			myCanvas.setSort(algorithm.checkSorted());
 			compareL.setText("Comparisons : " + compare);
-			accessL.setText("Swaps : " + swp);
+			accessL.setText("Swaps : " + swap);
 		}
 	}
 	
@@ -507,11 +494,11 @@ public class Main {
 	}
 	
 	public void Update() {	
-		myCanvas.setCapac(len);
+		myCanvas.setcapacity(length);
 		myCanvas.setSort(algorithm.checkSorted());
 		myCanvas.repaint();
 		compareL.setText("Comparisons : " + compare);
-		accessL.setText("Swaps : " + swp);
+		accessL.setText("Swaps : " + swap);
 	}
 	
 	public static void main(String[] args) {
@@ -527,7 +514,7 @@ public class Main {
 	}
 	
 
-	//SUB CLASS FOR ALGORITHMS
+	
 	class SortingAlgorithms {
 		
 		
@@ -550,16 +537,13 @@ public class Main {
 			}
 		}
 		
-// current = green
-// check = red
-// second check = blue
 		
 		public void bubbleSort() {
 			int j;
 			int c = 0;
-			while(c<len && sorting) {
+			while(c<length && sorting) {
 					j=0;
-					while(j<len-c-1 && sorting) {
+					while(j<length-c-1 && sorting) {
 						myCanvas.setCurrent(j);
 						myCanvas.setCheck(j+1);
 						if(list[j]>list[j+1]) {
@@ -578,8 +562,8 @@ public class Main {
 		
 		
 		public void heapSort() {
-			heapify(len);
-			int end = len-1;
+			heapify(length);
+			int end = length-1;
 			while(end > 0 && sorting) {
 				myCanvas.setCurrent(end);
 				myCanvas.setCheck(0);
@@ -614,8 +598,8 @@ public class Main {
 				} 
 		
 				if(child+1 <= end && list[swap] < list[child+1]) {
-					myCanvas.setCheck(swap); //red 
-					myCanvas.setSecondCheck(child+1); //blue
+					myCanvas.setCheck(swap); 
+					myCanvas.setSecondCheck(child+1); 
 					swap = child+1;
 				} 
 			
@@ -656,7 +640,7 @@ public class Main {
 			myCanvas.setCurrent(hi);
 			int i = lo - 1;
 			for(int j = lo; j < hi; j++) {
-				myCanvas.setCheck(j);//red
+				myCanvas.setCheck(j);
 				if(!sorting)
 					break;
 				if(list[j] < pivot) {
@@ -752,11 +736,11 @@ public class Main {
 			int temp = list[i1];	
 			list[i1] = list[i2];	
 			list[i2] = temp;	
-			swp++;
+			swap++;
 		}
 		
 		public boolean checkSorted() {
-			for(int i = 0; i < len-1; i++) {
+			for(int i = 0; i < length-1; i++) {
 				if(list[i] > list[i+1]) {	
 					return false;
 				}

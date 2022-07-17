@@ -8,7 +8,7 @@ public class MyCanvas extends JPanel {
 	private static final int cWidth = 900,cHeight = 500;
 	private int current= -1,check = -1,secondcheck = -1;
 	private int[] arr,tempArr;
-	private int width,height,capac=10;
+	private int width,height,capacity=10;
 	private boolean isSort = false;
 	private MyColor myColor = new MyColor();
 	MyCanvas(int[] arr){
@@ -21,8 +21,8 @@ public class MyCanvas extends JPanel {
 	}
 	
 	
-	public void setCapac(int value) {
-		this.capac = value;
+	public void setcapacity(int value) {
+		this.capacity = value;
 	}
 
 	public void setCurrent(int value) {
@@ -46,11 +46,11 @@ public class MyCanvas extends JPanel {
 	}
 	
 	public void paintComponent(Graphics g){
-		width = cWidth/capac;
+		width = cWidth/capacity;
 		
 		super.paintComponent(g);
 		if(isSort) {
-			for(int i=0;i<capac;i++) {
+			for(int i=0;i<capacity;i++) {
 				height = arr[i];
 				g.setColor(myColor.textColor);
 				g.drawString(String.valueOf(arr[i]), i*(width) + (int)(width - 10)/2 - 2, 500-height - 10);
@@ -61,7 +61,7 @@ public class MyCanvas extends JPanel {
 			}
 		}
 		else {
-			for(int i=0;i<capac;i++) {
+			for(int i=0;i<capacity;i++) {
 				height = arr[i];
 				g.setColor(myColor.textColor);
 				g.drawString(String.valueOf(arr[i]),i*(width) + (int)(width - 10)/2 - 2, 500-height - 10);

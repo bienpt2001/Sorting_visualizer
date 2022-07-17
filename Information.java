@@ -1,11 +1,3 @@
-
-
-//	private String[] algInfo = {"Best Case: O(n^2)\nWorst Case: O(n^2)\nAverage: O(n^2)",
-//								"Best Case: O(n)\nWorst Case: O(n^2)\nAverage: O(n^2)",
-//								"Best Case: O(n)\nWorst Case: O(n^2)\nAverage: O(n^2)",
-//								"Best Case: O(n)\nWorst Case: O(n^2)\nAverage: O(n^2)",
-//								"Best Case: O(n)\nWorst Case: O(n^2)\nAverage: O(n^2)",
-//								};
 public class Information {
 	private String[] BestTimeComplexity  = {"Ω(n)","Ω(n)","Ω(n log(n))","Ω(n log(n))","Ω(n log(n))"}; 
 	private String[] AverageTimeComplexity = {"θ(n^2)","θ(n^2)","θ(n log(n))","θ(n log(n))","θ(n log(n))"} ;
